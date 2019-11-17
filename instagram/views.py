@@ -1,8 +1,10 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse,Http404
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth import logout
+from django.contrib.auth.models import User
 from .models import Post
-
+import datetime as dt
 
 def welcome(request):
     return render(request, 'index.html')
@@ -14,3 +16,7 @@ def index(request):
 
     # follow other users
     return render(request, 'index.html',{"post":post})
+
+@login_required(login_url='/accounts/login/')
+def homepage(request):
+    return render(request, 'homepage.html')
