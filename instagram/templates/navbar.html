@@ -26,7 +26,20 @@
           </form>
         </div>
         <!-- end of search form     -->
-        
+        <!-- login -->
+        <div class="navbar-right" id="login">
+          {% if user.is_authenticated %}
+          <div class="navbar-collapse collapse-right">
+           
+          </div>
+
+          {% else %}
+          <li>
+            <a class='btn btn-default' href="/accounts/login">Login</a>
+          </li>
+
+          {% endif %}
+        </div>
       </div>
     </nav>
   </body>
