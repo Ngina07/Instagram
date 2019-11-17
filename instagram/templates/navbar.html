@@ -11,7 +11,10 @@
   <body>
     <nav class="navbar navbar-inverse" id="navigation">
       <div class="container-fluid">
-        
+        <div class="navbar-header" id="logo">
+          <a class="navbar-brand" href="{% url 'index'%}"><img src="/static/img/logo.png" alt="logo" width="60"></a>
+          <a class="navbar-brand" href="{% url 'index'%}"><img src="/static/img/grambname.png" alt="logo" width="100"></a>
+        </div>
         <!-- Adding a search form -->
         <div class="col-sm-4 col-md-4 navbar-right">
           <form action="#" class="navbar-form" id="search">
@@ -30,7 +33,11 @@
         <div class="navbar-right" id="login">
           {% if user.is_authenticated %}
           <div class="navbar-collapse collapse-right">
-           
+            <ul class="nav navbar-nav" id="navigation" style="color: black;">
+              <!-- <li><a href="{% url 'profiles' user.username %}"><img src="/static/img/explore.png" alt="logo" id="profile"></a></li> -->
+              <!-- <li><a href="{% url 'profiles' user.username %}"><img src="/static/img/profile.png" alt="logo" id="profile"></a></li> -->
+              <li><a href="/logout">Logout</a></li>
+            </ul>
           </div>
 
           {% else %}
