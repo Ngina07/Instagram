@@ -19,4 +19,7 @@ def index(request):
 
 @login_required(login_url='/accounts/login/')
 def homepage(request):
-    return render(request, 'homepage.html')
+    return render(request, 'home.html')
+
+def logout(request):
+    return render(request, 'index.html')
