@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 from django.contrib.auth.models import User
 from .models import Post, Follow, Comments , Profile
-from .forms import PostForm, UserForm, ProfileForm
+from .forms import PostForm, UserForm, ProfileForm, NewCommentsForm
 from django.contrib import messages
 import datetime as dt
 
@@ -73,3 +73,20 @@ def post(request):
         'post_form': post_form
     })
 
+@login_required (login_url='/accounts/register/')
+def comment(request,pk):
+    current_user = request.user
+    post = Post.get_single_post(pk)
+    comments = Comments.get_post_comment(post.id)
+    form = NewCommentsForm(request.POST)
+    if request.method == 'POST':
+        if form.is_valid:
+            comment = form.save(commit=False)
+            comment.user = current_user
+            comment.post = post
+            comment.image_id = post.id
+            comment.save()
+            return redirect('home')
+        else:
+            form = NewCommentsForm()
+    return render(request, 'comments/new_comment.html', {"form":form, "post":post, "comments":comments})
