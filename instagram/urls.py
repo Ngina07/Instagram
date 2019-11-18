@@ -9,6 +9,8 @@ urlpatterns=[
     url(r'^$', views.index,name='index'),
     url(r'^$', views.homepage,name='home'),
     url(r'^profiles/(?P<username>[-_\w.]+)$', views.profile,name='profiles'),
+    url(r'^profiles/post/$', views.post,name='uploadpost'),
+    url(r'^profiles/edit/(?P<username>[-_\w.]+)$', views.update_profile,name='editprofile'),
 ]
 
 if settings.DEBUG:
