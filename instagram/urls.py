@@ -11,6 +11,8 @@ urlpatterns=[
     url(r'^profiles/(?P<username>[-_\w.]+)$', views.profile,name='profiles'),
     url(r'^profiles/post/$', views.post,name='uploadpost'),
     url(r'^profiles/edit/(?P<username>[-_\w.]+)$', views.update_profile,name='editprofile'),
+    url(r'^profiles/comment/(\d+)$', views.comment, name="comment"),
+    # url(r'^update-profile-picture/(?P<username>[-_\w.]+)$', views.update_profilepic, name='update_profilepic'),
 ]
 
 if settings.DEBUG:

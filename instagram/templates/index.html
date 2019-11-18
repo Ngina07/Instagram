@@ -17,9 +17,9 @@
         <div class="col-md-1"></div>
 
         {% for post_item in post %}
-        <div class="col-md-6" id="image">
+        <div class="col-md-6" id="image" style="padding-top: 100px">
             <div class="well well-sm">
-                <h3><a href="/profiles">{{post_item.user.username}}</a></h3>
+                <h3><strong><a href="{% url 'profiles' user.username %">{{user.username}}</a></strong></h3>
                 <p>{{post_item.location}}</p>
                 <img src="{{post_item.image.url}}" class="img-responsive" alt="Image">
                 <div class="container" id="like">

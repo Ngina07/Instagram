@@ -8,15 +8,15 @@
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">{% endblock %}
   </head>
 
-  <body>
+  <body >
     <nav class="navbar navbar-inverse" id="navigation">
       <div class="container-fluid">
         <div class="navbar-header" id="logo">
           <a class="navbar-brand" href="{% url 'index'%}"><img src="/static/img/logo.png" alt="logo" width="60"></a>
-          <a class="navbar-brand" href="{% url 'index'%}"><img src="/static/img/grambname.png" alt="logo" width="100"></a>
+          <a class="navbar-brand" href="{% url 'index'%}"><img src="/static/img/instagram.png" alt="logo" width="100"></a>
         </div>
         <!-- Adding a search form -->
-        <div class="col-sm-4 col-md-4 navbar-right">
+        <div class="col-sm-4 col-md-4 navbar-right" style="padding-left: 250px">
           <form action="#" class="navbar-form" id="search">
             <div class="input-group">
               <div class="input-group-btn">
@@ -34,8 +34,8 @@
           {% if user.is_authenticated %}
           <div class="navbar-collapse collapse-right">
             <ul class="nav navbar-nav" id="navigation" style="color: black;">
-              <li><a href="{% url 'profiles' user.username %}"><img src="/static/img/explore.png" alt="logo" id="profile"></a></li>
-              <li><a href="{% url 'profiles' user.username %}"><img src="/static/img/profile.png" alt="logo" id="profile"></a></li>
+              
+              <li><a href="{% url 'profiles' user.username %}"><img src="/static/img/profile.png" alt="logo" id="profile" width="60"></a></li>
               <li><a href="/logout">Logout</a></li>
             </ul>
           </div>

@@ -3,22 +3,23 @@
 {% load staticfiles %}
 {% block content %}
 
-<div class="container" id="editprofiles">
+<div class="container" id="editprofiles" style="padding-top: 100px">
     <div class="row">
         <div class="col-md-3">
             <img src="{{profile_pic.url}}" class="img-responsive" alt="Image">
             <h3><strong><a href="{% url 'profiles' user.username %">{{user.username}}</a></strong></h3><br>
     </div>
 
-    <div class="col-md-3"><br>
+    <div class="col-md-3" style="padding-top: 100px"><br>
       <ul style="list-style-type:none">
         <h3><li><a href="{% url 'editprofile' user.username %}">Edit Profile</a></li> <br>
-                    <li><a href="{% url 'uploadpost'%}">Upload Posts</a></li><br></h3>
+                    <li><a href="{% url 'uploadpost'%}">Upload Posts</a></li><br>
+            </h3>
             </ul>
         </div>
         <div class="col-md-4"><br>
             <ul style="list-style-type:none">
-                
+
             </ul>
             <div class="col-md-4"></div>
         </div>
@@ -33,10 +34,13 @@
                 <p>{{post_item.location}}</p>
                 <img src="{{post_item.image.url}}" class="img-responsive" alt="Image">
                 <div class="container" id="like">
-                    <p>{{post_item.description}}</p>
+                    <p>{{post_item.caption}}</p>
                     <p>Be the first to like this.</p>
 
                 </div>
+                <a href="{% url 'comment' post_item.id%}">
+                    <i class="fa fa-comment-o" style="font-size:24px"></i></a> {{post_item.comment}}
+                </a>
             </div>
         </div>
     </div>
