@@ -9,7 +9,7 @@ class Post(models.Model):
     caption = models.CharField(max_length=3000)
     username = models.ForeignKey(User,on_delete=models.CASCADE)
     # post = models.ImageField(upload_to='posts/')
-    likes = models.IntegerField()
+    # likes = models.IntegerField()
 
     
     post_date=models.DateTimeField(auto_now_add=True)

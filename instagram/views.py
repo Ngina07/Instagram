@@ -1,11 +1,13 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect,reverse
 from django.http import HttpResponse,Http404
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 from django.contrib.auth.models import User
 from .models import Post, Follow, Comments , Profile
 from .forms import PostForm, UserForm, ProfileForm
+from django.contrib import messages
 import datetime as dt
+
 
 
 
@@ -59,7 +61,7 @@ def post(request):
     if request.method == 'POST':
         post_form = PostForm(request.POST,files =request.FILES)
         if post_form.is_valid():
-            single_post = Posts(user =request.user ,image = request.FILES['image'], description = request.POST['description'] )
+            single_post = Post(username =request.user ,image = request.FILES['image'], caption = request.POST['caption'] )
             single_post.save()
             messages.success(request, ('Your post was successfully updated!'))
             return redirect(reverse('profiles', kwargs = {'username': request.user.username}))
