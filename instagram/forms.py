@@ -21,3 +21,8 @@ class ProfilePicForm(forms.ModelForm):
     class Meta:
         model = Profile
         fields = ('profile_pic',)
+
+class NewCommentsForm(forms.ModelForm):
+    class Meta:
+        model = Comments
+        fields = ('comment',)
