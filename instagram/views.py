@@ -36,4 +36,20 @@ def profile(request,username):
 
     return render(request, 'profiles/profile.html', {"post":post, "user":user, "profile_pic":profile_pic})
 
+@login_required
+def post(request):
+    if request.method == 'POST':
+        post_form = PostForm(request.POST,files =request.FILES)
+        if post_form.is_valid():
+            single_post = Posts(user =request.user ,image = request.FILES['image'], description = request.POST['description'] )
+            single_post.save()
+            messages.success(request, ('Your post was successfully updated!'))
+            return redirect(reverse('profiles', kwargs = {'username': request.user.username}))
+        else:
+            messages.error(request, ('Please correct the error below.'))
+    else:
+        post_form = PostForm()
+    return render(request,'profiles/new_post.html', {
+        'post_form': post_form
+    })
 
