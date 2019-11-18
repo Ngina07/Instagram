@@ -4,8 +4,9 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 from django.contrib.auth.models import User
 from .models import Post, Follow, Comments , Profile
-from .forms import PostForm, UserForm, ProfileForm, NewCommentsForm
+from .forms import PostForm, UserForm, ProfileForm, NewCommentsForm,ProfilePicForm
 from django.contrib import messages
+from django.db import transaction
 import datetime as dt
 
 
@@ -38,6 +39,8 @@ def profile(request,username):
 
     return render(request, 'profiles/profile.html', {"post":post, "user":user, "profile_pic":profile_pic})
 
+@login_required
+@transaction.atomic
 def update_profile(request,username):
     if request.method == 'POST':
         user_form = UserForm(request.POST, instance=request.user)
@@ -56,6 +59,8 @@ def update_profile(request,username):
         'user_form': user_form,
         'profile_form': profile_form
     })
+
+
 @login_required
 def post(request):
     if request.method == 'POST':
@@ -90,3 +95,4 @@ def comment(request,pk):
         else:
             form = NewCommentsForm()
     return render(request, 'comments/new_comment.html', {"form":form, "post":post, "comments":comments})
+
