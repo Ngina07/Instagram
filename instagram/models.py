@@ -15,3 +15,17 @@ class Post(models.Model):
 
     def __str__(self):
         return self.username
+
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    website = models.CharField(max_length=30, blank=True)
+    bio = models.TextField(max_length=500, blank=True)
+    email = models.EmailField()
+    phone_number = PhoneNumberField(max_length=10, blank=True)
+    # gender = models.CharField(max_length=30, choices=Gender_Choices, default='None', blank=True)
+    location = models.CharField(max_length=30, blank=True)
+    birth_date = models.DateTimeField(null=True, blank=True)
+    profile_pic = models.ImageField(upload_to = 'photos/',blank=True)
+
+
+    User.profile = property(lambda u: Profile.objects.get_or_create(user=u)[0])
