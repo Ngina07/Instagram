@@ -19,7 +19,7 @@ class Post(models.Model):
 
     @classmethod
     def get_posts(cls):
-        post = Posts.objects.all()
+        post = Post.objects.all()
 
         return post
     @classmethod

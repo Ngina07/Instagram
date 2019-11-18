@@ -5,9 +5,10 @@ from django.conf.urls.static import static
 
 
 urlpatterns=[
-    url('^$',views.welcome, name='welcome'),
+    
     url(r'^$', views.index,name='index'),
     url(r'^$', views.homepage,name='home'),
+    url(r'^profiles/(?P<username>[-_\w.]+)$', views.profile,name='profiles'),
 ]
 
 if settings.DEBUG:

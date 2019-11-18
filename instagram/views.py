@@ -3,16 +3,15 @@ from django.http import HttpResponse,Http404
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 from django.contrib.auth.models import User
-from .models import Post
+from .models import Post, Follow, Comments , Profile
 import datetime as dt
 
-def welcome(request):
-    return render(request, 'index.html')
+
 
 @login_required(login_url='/accounts/register/')
 def index(request):
     # current_user = request.user
-    post = Posts.get_posts()
+    post = Post.get_posts()
 
     # follow other users
     return render(request, 'index.html',{"post":post})
@@ -23,3 +22,14 @@ def homepage(request):
 
 def logout(request):
     return render(request, 'index.html')
+
+@login_required
+def profile(request,username):
+    try:
+        user = User.objects.get(username=username)
+        profile_pic = Profile.objects.filter(user_id=user).all().order_by('-id')
+        post = Posts.objects.filter(user_id=user).all().order_by('-id')
+    except ObjectDoesNotExist:
+        raise Http404()
+
+    return render(request, 'profiles/profile.html', {"post":post, "user":user, "profile_pic":profile_pic})
