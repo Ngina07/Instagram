@@ -36,6 +36,24 @@ def profile(request,username):
 
     return render(request, 'profiles/profile.html', {"post":post, "user":user, "profile_pic":profile_pic})
 
+def update_profile(request,username):
+    if request.method == 'POST':
+        user_form = UserForm(request.POST, instance=request.user)
+        profile_form = ProfileForm(request.POST, instance=request.user.profile)
+        if user_form.is_valid() and profile_form.is_valid():
+            user_form.save()
+            profile_form.save()
+            messages.success(request, ('Your profile was successfully updated!'))
+            return redirect('home')
+        else:
+            messages.error(request, ('Please correct the error below.'))
+    else:
+        user_form = UserForm(instance=request.user)
+        profile_form = ProfileForm(instance=request.user.profile)
+    return render(request, 'profiles/edit_profile.html', {
+        'user_form': user_form,
+        'profile_form': profile_form
+    })
 @login_required
 def post(request):
     if request.method == 'POST':
