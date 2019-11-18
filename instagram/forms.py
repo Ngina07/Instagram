@@ -9,5 +9,10 @@ class UserForm(forms.ModelForm):
 
 class PostForm(forms.ModelForm):
     class Meta:
-        model = Posts
-        fields = ('image','description')
+        model = Post
+        fields = ('image','caption')
+
+class ProfileForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = ('profile_pic','website', 'bio', 'location')
