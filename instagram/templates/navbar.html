@@ -34,8 +34,8 @@
           {% if user.is_authenticated %}
           <div class="navbar-collapse collapse-right">
             <ul class="nav navbar-nav" id="navigation" style="color: black;">
-              <!-- <li><a href="{% url 'profiles' user.username %}"><img src="/static/img/explore.png" alt="logo" id="profile"></a></li> -->
-              <!-- <li><a href="{% url 'profiles' user.username %}"><img src="/static/img/profile.png" alt="logo" id="profile"></a></li> -->
+              <li><a href="{% url 'profiles' user.username %}"><img src="/static/img/explore.png" alt="logo" id="profile"></a></li>
+              <li><a href="{% url 'profiles' user.username %}"><img src="/static/img/profile.png" alt="logo" id="profile"></a></li>
               <li><a href="/logout">Logout</a></li>
             </ul>
           </div>
