@@ -3,7 +3,7 @@
 #### By : Phillis Ngina Njoroge
 
 ### Description
-The web-app displays images uploaded by the app admin. Users are able the view the images,search images by catgory and copy photo links.Access live link [here](https://gallery101.herokuapp.com)
+The web-app displays images uploaded by the app admin. Users are able the view the images,search images by catgory and copy photo links.Access live link [here]https://clonestagram101.herokuapp.com/)
 
 ## BDD
 
