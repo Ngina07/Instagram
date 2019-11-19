@@ -10,10 +10,11 @@
     <div class="card-column">
 
         <div class="card">
+            
             {% for post_item in post %}
             <div id="image">
                 <div>
-                    <h3><strong><a href="{% url 'profiles' user.username %">{{user.username}}</a></strong></h3>
+                    <h3><strong>{{post_item.username}}</strong></h3>
                 <p>{{post_item.location}}</p>
                 <img src="{{post_item.image.url}}" class="card-img" alt="Image" style="height: 60vh; width: 80vh">
                 
