@@ -35,12 +35,11 @@
                 <img src="{{post_item.image.url}}" class="img-responsive" alt="Image">
                 <div class="container" id="like">
                     <p>{{post_item.caption}}</p>
-                    <p>Be the first to like this.</p>
+                   
 
                 </div>
                 <a href="{% url 'comment' post_item.id%}">
-                    <i class="fa fa-comment-o" style="font-size:24px"></i></a> {{post_item.comment}}
-                </a>
+                    <i class="fa fa-comment-o" style="font-size:24px"></i></a> comments
             </div>
         </div>
     </div>

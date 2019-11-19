@@ -92,6 +92,7 @@ def comment(request,pk):
             comment.image_id = post.id
             comment.save()
             return redirect('home')
+            
         else:
             form = NewCommentsForm()
     return render(request, 'comments/new_comment.html', {"form":form, "post":post, "comments":comments})

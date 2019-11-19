@@ -105,4 +105,5 @@ class Comments(models.Model):
         all_comments = Comments.objects.filter(image_id=post.id).all()
         comments += all_comments
         comment_count = len(comments)
+        
         return comments
