@@ -10,18 +10,18 @@
 
             <div class="profile-image">
 
-                    <img src="{{profile_pic.url}}"
-                    alt="">
+                <img src="{{profile_pic.url}}" alt="">
 
             </div>
 
             <div class="profile-user-settings">
 
-                    <h3 class="profile-user-name"><strong><a href="{% url 'profiles' user.username %">{{user.username}}</a></strong></h3>
+                <h3 class="profile-user-name"><strong><a href="{% url 'profiles' user.username %">{{user.username}}</a></strong></h3>
 
-                <button class="btn profile-edit-btn" href="{% url 'editprofile' user.username %}">Edit Profile</button>
+                <a href="{% url 'editprofile' user.username %}"><button class="btn profile-edit-btn">Edit
+                                Profile</button></a>
+                        <a href="{% url 'uploadpost'%}"><button class="btn profile-edit-btn">Upload Post</button></a>
 
-           
 
             </div>
 
@@ -29,8 +29,7 @@
 
             <div class="profile-bio">
 
-                <p><span class="profile-real-name">Jane Doe</span> Lorem ipsum dolor sit, amet consectetur adipisicing
-                    elit 📷✈️🏕️</p>
+                <p><span class="profile-real-name"></span> {{profile.bio}}</p>
 
             </div>
 
@@ -47,26 +46,31 @@
     <div class="container">
 
         <div class="gallery">
-
+            {% for post_item in post %}
             <div class="gallery-item" tabindex="0">
 
-                <img src="https://images.unsplash.com/photo-1511765224389-37f0e77cf0eb?w=500&h=500&fit=crop"
-                    class="gallery-image" alt="">
+                <img src="{{post_item.image.url}}" class="gallery-image" alt="">
 
                 <div class="gallery-item-info">
 
                     <ul>
-                        <li class="gallery-item-likes"><span class="visually-hidden">Likes:</span><i
-                                class="fas fa-heart" aria-hidden="true"></i> 56</li>
-                        <li class="gallery-item-comments"><span class="visually-hidden">Comments:</span><i
-                                class="fas fa-comment" aria-hidden="true"></i> 2</li>
+                        <li>{{post_item.caption}}</li>
+                        <a style="color: white" href="{% url 'upvote_post' post_item.id %}">
+                            <li class="gallery-item-likes"><span class="visually-hidden">Likes:</span><i
+                                    class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></i>
+                                {{post_item.upvote_count}}</li>
+                        </a>
+                        <a style = " color:white"href="{% url 'comment' post_item.id%}">
+                            <li class="gallery-item-comments"><span class="visually-hidden">Comments:</span><i
+                                    class="fa fa-comment-o" aria-hidden="true"></i></li>
+                        </a>
                     </ul>
 
                 </div>
 
             </div>
 
-
+            {%endfor %}
         </div>
 
     </div>
@@ -76,54 +80,5 @@
 
     </div>
     <!-- End of container -->
-
-</main>
-
-<body>
-
-
-    <div class="col-md-3" style="padding-top: 100px"><br>
-      <ul style="list-style-type:none">
-        <h3><li></li> <br>
-                        <li><a href="{% url 'uploadpost'%}">Upload Posts</a></li><br>
-                </h3>
-                </ul>
-            </div>
-            <div class="col-md-4"><br>
-                <ul style="list-style-type:none">
-
-                </ul>
-                <div class="col-md-4"></div>
-            </div>
-        </div>
-    </div>
-    <div>
-        <h2>YOUR POSTS</h2>
-    </div>
-
-    <div class="row">
-
-        {% for post_item in post %}
-        <div class="col-md-11">
-            <div class="content">
-
-
-                <p>{{post_item.location}}</p>
-                <img src="{{post_item.image.url}}" class=" img img-responsive thumbnail style=" height:500px"
-                    alt="Image">
-                <div class="container" id="like">
-
-                    <h3><a href="{% url 'upvote_post' post_item.id %}">
-                            <span class="glyphicon glyphicon-thumbs-up" id="comment"></span></a>
-                        {{post_item.upvote_count}}</h3>
-
-                </div>
-                <h4>{{post_item.caption}}</h4>
-                <a href="{% url 'comment' post_item.id%}">
-                    <i class="fa fa-comment-o" style="font-size:24px"></i></a> comments
-            </div>
-        </div>
-    </div>
-    {% endfor %}
     {% endblock %}
-</body>
+</main>
