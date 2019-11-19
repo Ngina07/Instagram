@@ -8,7 +8,7 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 
 #Model for Posts
-class Post(models.Model):
+class Post(VoteModel,models.Model):
     image = models.ImageField(upload_to = 'posts/')
     caption = models.CharField(max_length=3000)
     username = models.ForeignKey(User,on_delete=models.CASCADE)
@@ -84,7 +84,7 @@ class Follow(models.Model):
 #Comments Model
 class Comments(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    image = models.ForeignKey(Post)
+    image = models.ForeignKey(Post, on_delete=models.CASCADE )
     comment = models.CharField(max_length=150, blank=True)
     date_commented = models.DateTimeField(auto_now_add=True)
 

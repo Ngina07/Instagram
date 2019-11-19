@@ -1,13 +1,14 @@
-{% extends 'profiles/base.html' %}{% load bootstrap3 %} {% load static %} {% block content %} <br>
-<div class="container" id="editprofiles">
+{% extends 'profiles/base.html' %}
+{% load bootstrap3 %} 
+{% load static %} 
+{% block content %} <br>
+<body >
+  <div class="container"   id="editprofiles">
     <div class="row">
         <div class="col-md-4">
             <ul style="list-style-type:none">
                 <li><a href="/accounts/password/change">Change Password</a></li><br>
-                <li>Authorized Applications</li> <br>
-                <li>Comments</li><br>
-                <li>Email and SMS</li><br>
-                <li>Manage Contacts</li><br>
+                
             </ul>
         </div>
         <div class="col-md-4">
@@ -24,4 +25,5 @@
         <div class="col-md-2"></div>
     </div>
 </div>
-{% endblock %}
+{% endblock %}  
+</body>

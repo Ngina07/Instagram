@@ -8,10 +8,11 @@ from .forms import PostForm, UserForm, ProfileForm, NewCommentsForm,ProfilePicFo
 from django.contrib import messages
 from django.db import transaction
 import datetime as dt
+from vote.managers import VotableManager
 
 
 
-
+votes = VotableManager()
 
 @login_required(login_url='/accounts/register/')
 def index(request):
@@ -97,3 +98,16 @@ def comment(request,pk):
             form = NewCommentsForm()
     return render(request, 'comments/new_comment.html', {"form":form, "post":post, "comments":comments})
 
+# like a post
+@login_required (login_url='/accounts/register/')
+def upvote_posts(request, pk):
+    post = Post.get_single_post(pk)
+    user = request.user
+    user_id = user.id
+
+    if user.is_authenticated:
+        upvote = post.votes.up(user_id)
+        
+        post.upvote_count = post.votes.count()
+        post.save()
+    return redirect('home')

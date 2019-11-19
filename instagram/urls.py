@@ -12,6 +12,7 @@ urlpatterns=[
     url(r'^profiles/post/$', views.post,name='uploadpost'),
     url(r'^profiles/edit/(?P<username>[-_\w.]+)$', views.update_profile,name='editprofile'),
     url(r'^profiles/comment/(\d+)$', views.comment, name="comment"),
+    url(r'^profiles/upvote/(\d+)$', views.upvote_posts, name="upvote_post"),
     
 ]
 
