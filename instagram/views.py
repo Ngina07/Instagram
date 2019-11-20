@@ -75,7 +75,7 @@ def post(request):
             messages.error(request, ('Please correct the error below.'))
     else:
         post_form = PostForm()
-    return render(request,'profiles/new_post.html', locals()})
+    return render(request,'profiles/new_post.html', locals())
 
 @login_required (login_url='/accounts/register/')
 def comment(request,pk):
