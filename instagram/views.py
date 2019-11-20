@@ -65,7 +65,7 @@ def update_profile(request,username):
 @login_required
 def post(request):
     if request.method == 'POST':
-        post_form = PostForm(request.POST,files =request.FILES)
+        post_form = PostForm(request.POST,request.FILES)
         if post_form.is_valid():
             single_post = Post(username =request.user ,image = request.FILES['image'], caption = request.POST['caption'] )
             single_post.save()
@@ -75,9 +75,7 @@ def post(request):
             messages.error(request, ('Please correct the error below.'))
     else:
         post_form = PostForm()
-    return render(request,'profiles/new_post.html', {
-        'post_form': post_form
-    })
+    return render(request,'profiles/new_post.html', locals()})
 
 @login_required (login_url='/accounts/register/')
 def comment(request,pk):
