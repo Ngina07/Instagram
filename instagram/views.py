@@ -67,6 +67,7 @@ def post(request):
     if request.method == 'POST':
         post_form = PostForm(request.POST,request.FILES)
         if post_form.is_valid():
+            print(request.POST['caption'])
             single_post = post_form.save(commit=False)
             single_post.username= request.user
             single_post.save()
