@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'instagram',
     'bootstrap3',
     'vote',
+    'pyuploadcare.dj'
 ]
 
 MIDDLEWARE = [
@@ -75,6 +76,10 @@ TEMPLATES = [
     },
 ]
 
+UPLOADCARE = {
+    'pub_key': 'c2750376e66fc92ce49b',
+    'secret': config('SECRET'),
+}
 WSGI_APPLICATION = 'clone.wsgi.application'
 
 

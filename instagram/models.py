@@ -6,10 +6,11 @@ from vote.models import VoteModel
 from vote.managers import VotableManager
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from pyuploadcare.dj.models import ImageField
 
 #Model for Posts
 class Post(VoteModel,models.Model):
-    image = models.ImageField(upload_to = 'posts/')
+    image = ImageField(blank=True, manual_crop="")
     caption = models.CharField(max_length=3000)
     username = models.ForeignKey(User,on_delete=models.CASCADE)
     location = models.CharField(max_length=30, blank=True)
@@ -50,7 +51,7 @@ class Profile(models.Model):
     email = models.EmailField()
     location = models.CharField(max_length=30, blank=True)
     birth_date = models.DateTimeField(null=True, blank=True)
-    profile_pic = models.ImageField(upload_to = 'photos/',blank=True)
+    profile_pic = ImageField(blank=True, manual_crop="")
 
 
     User.profile = property(lambda u: Profile.objects.get_or_create(user=u)[0])
