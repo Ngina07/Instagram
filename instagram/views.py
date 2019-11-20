@@ -92,7 +92,7 @@ def comment(request,pk):
             comment.post = post
             comment.image_id = post.id
             comment.save()
-            return redirect('comment')
+            return redirect('home')
             
         else:
             form = NewCommentsForm()
