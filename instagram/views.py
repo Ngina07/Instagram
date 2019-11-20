@@ -67,7 +67,8 @@ def post(request):
     if request.method == 'POST':
         post_form = PostForm(request.POST,request.FILES)
         if post_form.is_valid():
-            single_post = Post(username =request.user ,image = request.FILES['image'], caption = request.POST['caption'] )
+            single_post = post_form.save(commit=False)
+            single_post.username= request.user
             single_post.save()
             messages.success(request, ('Your post was successfully updated!'))
             return redirect(reverse('profiles', kwargs = {'username': request.user.username}))
