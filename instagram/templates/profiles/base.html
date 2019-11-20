@@ -12,6 +12,10 @@
     {% endif %} {% block styles %} {% bootstrap_css%}
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
     <link rel="shortcut icon" type="img/png" href="{% static 'img/instalogo.png' %}" /> {% endblock %}
+
+    {{post_form.media}}
+    {{profile_form.media}}
+
   </head>
 
   <body>
